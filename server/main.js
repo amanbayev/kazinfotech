@@ -28,6 +28,16 @@ Meteor.startup(() => {
        } else {
          return false;
        }
+    },
+    createUser2:function(uname, pw, profile) {
+      var options = {
+        username: uname,
+        password: pw,
+        profile: profile
+      }
+      var cUser = Accounts.createUser(options);
+      Roles.addUsersToRoles(cUser, 'student');
+      return cUser;
     }
   });
 });

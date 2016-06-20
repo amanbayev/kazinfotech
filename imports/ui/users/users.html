@@ -82,8 +82,8 @@
             {{user.username}}
           </td>
           <td>
-            <button type="button" class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i></button>
-            <button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button>
+            <button id="editUserBtn" type="button" data-id="{{user._id}}" class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i></button>
+            <button id="removeUserBtn" type="button" data-id="{{user._id}}" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button>
           </td>
         </tr>
       {{/each}}
