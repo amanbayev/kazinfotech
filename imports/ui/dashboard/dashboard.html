@@ -1,30 +1,48 @@
 <template name="dashboard">
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">Викторина КазИнфоТех</a>
+  {{#if currentUser}}
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Викторина КазИнфоТех</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="nav-col-1">
+          <ul class="nav navbar-nav">
+            {{#if isInRole 'admin'}}
+              <li class="{{isActivePath '/users'}}">
+                <a href="/users">Пользователи</a>
+              </li>
+              <li class="{{isActivePath '/api'}}">
+                <a href="/api">API</a>
+              </li>
+            {{/if}}
+            <li class="{{isActivePath '/tests'}}">
+              <a href="/tests">Тесты</a>
+            </li>
+            <li>
+              <a href="#" id="logoutBtn">Выйти ({{getUserNameFull}})</a>
+            </li>
+          </ul>
+        </div>
       </div>
-      <div class="collapse navbar-collapse" id="nav-col-1">
-        <ul class="nav navbar-nav">
-          <li class="{{isActivePath '/users'}}">
-            <a href="/users">Пользователи</a>
-          </li>
-          <li class="{{isActivePath '/tests'}}">
-            <a href="/tests">Тесты</a>
-          </li>
-          <li class="{{isActivePath '/api'}}">
-            <a href="/api">API</a>
-          </li>
-        </ul>
-      </div>
+    </nav>
+    <div class="container">
       {{> Template.dynamic template=content}}
     </div>
-  </nav>
+  {{else}}
+    <div class="jumbotron">
+      <div class="container">
+        <h3>Необходимо <a href="/login">войти!</a></h3>
+        Портал разработан для тестовых целей. <br />
+        Талгат Аманбаев &copy; (20-06-2016).
+      </div>
+    </div>
+  {{/if}}
 </template>

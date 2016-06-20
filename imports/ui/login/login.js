@@ -18,7 +18,7 @@ Template.login.events({
          });
        } else {
          toastr.success('Добро пожаловать, '+Meteor.user().profile.firstName+'!');
-         FlowRouter.go('/dashboard');
+         FlowRouter.go('/tests');
        }
      });
   }

@@ -1,5 +1,92 @@
 <template name="users">
-  <div class="container">
-    Users
+  <div class="jumbotron">
+    <h2>Управление пользователями системы</h2>
+    В этом разделе администратор сможет создавать учетные записи пользователей и управлять ими (изменять/удалять).
   </div>
+  {{#if isCreatingUser}}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Создание пользователя
+      </div>
+      <form>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-xs-12 col-md-6">
+              <div class="form-group">
+                <label for="usernameField">Имя пользователя</label>
+                <input type="text" class="form-control" id="usernameField" placeholder="student" />
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-6">
+              <div class="form-group">
+                <label for="passwordField">Пароль</label>
+                <input type="password" class="form-control" id="passwordField" placeholder="password" />
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-6">
+              <div class="form-group">
+                <label for="nameField">Имя</label>
+                <input type="text" class="form-control" id="nameField" placeholder="Константин" />
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-6">
+              <div class="form-group">
+                <label for="lastnameField">Фамилия</label>
+                <input type="text" class="form-control" id="lastnameField" placeholder="Хабенский" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-footer">
+          <a href="#" class="btn btn-danger" id="cancelCreateUserBtn"><i class="glyphicon glyphicon-arrow-left"></i>&nbsp;&nbsp;Отмена</a>
+          <a href="#" class="btn btn-success" id="saveUserBtn"><i class="glyphicon glyphicon-ok"></i>&nbsp;&nbsp;Добавить</a>
+        </div>
+      </form>
+    </div>
+  {{else}}
+    <a href="#" class="btn btn-success" id="addUserBtn">Добавить пользователя</a>
+  {{/if}}
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <td>
+          #
+        </td>
+        <td>
+          Имя
+        </td>
+        <td>
+          Фамилия
+        </td>
+        <td>
+          Логин
+        </td>
+        <td>
+          Действия
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each user in getUsers}}
+        <tr>
+          <td>
+            {{addOne @index}}
+          </td>
+          <td>
+            {{user.profile.firstName}}
+          </td>
+          <td>
+            {{user.profile.lastName}}
+          </td>
+          <td>
+            {{user.username}}
+          </td>
+          <td>
+            <button type="button" class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i></button>
+            <button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
 </template>

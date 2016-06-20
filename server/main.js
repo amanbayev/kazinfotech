@@ -1,6 +1,5 @@
 import { Meteor } from 'meteor/meteor';
 
-
 Meteor.startup(() => {
   if (Meteor.users.find().count() === 0) {
     var options = {
@@ -19,5 +18,16 @@ Meteor.startup(() => {
 
   Meteor.publish("allUsers", function(){
     return Meteor.users.find();
+  });
+
+  Meteor.methods({
+    checkUsername:function(username){
+       var cFound = Accounts.findUserByUsername(username);
+       if (cFound){
+         return cFound;
+       } else {
+         return false;
+       }
+    }
   });
 });
