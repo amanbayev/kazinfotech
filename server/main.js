@@ -1,4 +1,5 @@
 import { Meteor } from 'meteor/meteor';
+import '../imports/api/Tests.js';
 
 Meteor.startup(() => {
   if (Meteor.users.find().count() === 0) {

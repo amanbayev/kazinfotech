@@ -1,0 +1,37 @@
+<template name="singleTest">
+  {{testName}} <br />
+  <div class="progress">
+    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
+      70%
+    </div>
+  </div>
+  <div class="center-block">
+    <nav>
+      <ul class="pagination">
+        <li>
+          <a href="#" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <li class="{{isQuestionActive 1}}"><a href="/tests/{{getTestId}}/1">1</a></li>
+        <li class="{{isQuestionActive 2}}"><a href="/tests/{{getTestId}}/2">2</a></li>
+        <li class="{{isQuestionActive 3}}"><a href="/tests/{{getTestId}}/3">3</a></li>
+        <li class="{{isQuestionActive 4}}"><a href="/tests/{{getTestId}}/4">4</a></li>
+        <li class="{{isQuestionActive 5}}"><a href="/tests/{{getTestId}}/5">5</a></li>
+        <li>
+          <a href="#" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    {{getQuestion}}
+    <ul>
+      {{#each opt in answers}}
+        <li>
+          <input type="radio" name="group1" value="{{opt}}"> {{opt}}
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+</template>

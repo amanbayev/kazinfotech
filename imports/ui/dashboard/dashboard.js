@@ -1,4 +1,5 @@
 import './dashboard.html';
+
 Template.dashboard.events({
   "click #logoutBtn": function(e, t){
     e.preventDefault();

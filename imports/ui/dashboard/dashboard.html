@@ -24,7 +24,10 @@
               </li>
             {{/if}}
             <li class="{{isActivePath '/tests'}}">
-              <a href="/tests">Тесты</a>
+              <a href="/tests" data-toggle="tooltip" data-placement="bottom" title="Для создания тестов зайдите под админом" id="testsLink">Тесты</a>
+              <script>
+                $('#testsLink').tooltip();
+              </script>
             </li>
             <li>
               <a href="#" id="logoutBtn">Выйти ({{getUserNameFull}})</a>

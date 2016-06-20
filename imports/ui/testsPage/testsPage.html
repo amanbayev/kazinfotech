@@ -3,4 +3,54 @@
     <h2>Тесты</h2>
     В этом разделе вы сможете сдавать тесты и просматривать результаты.
   </div>
+  {{#if isInRole 'admin'}}
+    {{#if isCreatingTest}}
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          Создание теста
+        </div>
+        <form>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-xs-12 col-md-6">
+                <div class="form-group">
+                  <label for="testNameField">Название теста</label>
+                  <input type="text" class="form-control" id="testNameField" placeholder="Игра престолов" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel-footer">
+            <a href="#" id="cancelCreateTestBtn" class="btn btn-danger"><i class="glyphicon glyphicon-arrow-left"></i>&nbsp;&nbsp;Отмена</a>
+          </div>
+        </form>
+      </div>
+    {{else}}
+      <a href="#" class="btn btn-success" id="createTestBtn">Создать тест</a>
+    {{/if}}
+  {{/if}}
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <td>
+          #
+        </td>
+        <td>
+          Name
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each test in getTests}}
+        <tr>
+          <td>
+            {{@index}}
+          </td>
+          <td>
+            <a href="/tests/{{test._id}}/1">{{test.name}}</a>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
 </template>
