@@ -1,7 +1,15 @@
 import { Meteor } from 'meteor/meteor';
-import '../imports/api/Tests.js';
+import { Tests } from '../imports/api/Tests.js';
 
 Meteor.startup(() => {
+  var Api = new Restivus({
+    version: 'v1',
+    useDefaultAuth: true,
+    prettyJson: true
+  });
+
+  Api.addCollection(Tests);
+
   if (Meteor.users.find().count() === 0) {
     var options = {
       username: 'admin',

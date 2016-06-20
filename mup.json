@@ -1,0 +1,25 @@
+{
+  "servers": [
+    {
+      "host": "104.131.34.177",
+      "username": "root",
+      "password": "Gulzhan1",
+      "env": {}
+    }
+  ],
+
+  "setupMongo": true,
+
+  "appName": "kazinfotech",
+
+  "app": ".",
+
+  "env": {
+    "PORT": 80,
+    "ROOT_URL": "http://104.131.34.177"
+  },
+
+  "deployCheckWaitTime": 125,
+
+  "enableUploadProgressBar": true
+}

@@ -1,3 +1,31 @@
 <template name="api">
-  API
+  <div class="jumbotron">
+    <h2>API</h2>
+    Небольшой wiki для использования API в данном проекте.
+  </div>
+  <div class="list-group">
+    <a href="/api/v1/Tests" class="list-group-item">
+      <h2>/api/v1/Tests</h2>
+      Метод запроса <b>GET</b><br />
+      Возвращает JSON объект следующего типа:<br />
+      <code>
+        status: "success",<br />
+        data: [ ... ]<br />
+      </code>
+      Где в поле data будет массив следющего типа:<br />
+      <code>
+        {<br />
+          &nbsp;&nbsp;&nbsp;_id: "StringId",<br />
+          &nbsp;&nbsp;&nbsp;name: "Test name",<br />
+          &nbsp;&nbsp;&nbsp;questions: [...]<br />
+        }<br />
+      </code>
+      Вопросы выглядят так:<br />
+      <code>
+        question - вопрос,<br />
+        answers - массив ответов string, <br />
+        correct - верный ответ string
+      </code>
+    </a>
+  </div>
 </template>
