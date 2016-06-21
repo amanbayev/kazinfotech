@@ -6,37 +6,40 @@
       {{getProgressValue}}%
     </div>
   </div>
-  <div class="col-xs-12 col-md-6 col-md-offset-3">
-    <h2>{{getQuestion}}</h2>
-    <div class="list-group">
-      {{#each opt in answers}}
-        <button type="button" class="list-group-item questionOptionBtn" data-value="{{opt}}">{{opt}}</button>
-      {{/each}}
-    </div>
-    {{#if isAnswerDisabled}}
-      <h3><span class="label label-danger">Вы уже ответили на этот вопрос!</span></h3>
-    {{else}}
-      <a class="btn btn-success {{hasSelectedAnswer}}" id="answerQuestionBtn">Ответить</a>
-    {{/if}}
-    <nav>
-      <ul class="pagination">
-        <li>
-          <a href="#" aria-label="Previous" id="prevQuestionBtn">
-            <span aria-hidden="true">&laquo;</span>
-          </a>
-        </li>
-        {{#each question in getQuestions}}
-          <li class="{{isQuestionActive question.id}} {{isPageDisabled}}">
-            <a href="/tests/{{getTestId}}/{{question.id}}">{{question.id}}</a>
-          </li>
+  {{#if hasMoreQuestions}}
+    <div class="col-xs-12 col-md-6 col-md-offset-3">
+      <h2>{{getQuestion}}</h2>
+      <div class="list-group">
+        {{#each opt in answers}}
+          <button type="button" class="list-group-item questionOptionBtn" data-value="{{opt}}">{{opt}}</button>
         {{/each}}
-        <li>
-          <a href="#" aria-label="Next" id="nextQuestionBtn">
-            <span aria-hidden="true">&raquo;</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
-  </div>
-
+      </div>
+      {{#if isAnswerDisabled}}
+        <h3><span class="label label-danger">Вы уже ответили на этот вопрос!</span></h3>
+      {{else}}
+        <a class="btn btn-success {{hasSelectedAnswer}}" id="answerQuestionBtn">Ответить</a>
+      {{/if}}
+      <nav>
+        <ul class="pagination">
+          <li>
+            <a href="#" aria-label="Previous" id="prevQuestionBtn">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          {{#each question in getQuestions}}
+            <li class="{{isQuestionActive question.id}} {{isPageDisabled}}">
+              <a href="/tests/{{getTestId}}/{{question.id}}">{{question.id}}</a>
+            </li>
+          {{/each}}
+          <li>
+            <a href="#" aria-label="Next" id="nextQuestionBtn">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  {{else}}
+    <h2>Вы закончили этот тест!</h2>
+  {{/if}}
 </template>

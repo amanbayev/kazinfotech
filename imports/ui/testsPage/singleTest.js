@@ -67,6 +67,14 @@ Template.singleTest.events({
       var temp = parseInt(answered) + 1;
       var temp2 = parseInt(userTests[testIndex].correct);
       var correctAns = testInUserProfile.correct;
+      var cTest = Tests.findOne({_id: testId});
+      console.log(cTest);
+      var quests = cTest.questions;
+      var questId = parseInt(qId) - 1;
+      var cQuest = quests[questId];
+      console.log('question is:');
+      console.log(cQuest);
+      var correctAns = cQuest.correct;
       console.log(correctAns);
       if (Session.get('qValue') == correctAns) {
         console.log('it is correct!');
@@ -93,6 +101,20 @@ Template.singleTest.events({
 });
 
 Template.singleTest.helpers({
+  hasMoreQuestions: function(){
+    var testId = FlowRouter.getParam("testId");
+    var found = false;
+    var userTests = Meteor.user().profile.tests;
+    var testInUserProfile = undefined;
+    for (var i = 0; i < userTests.length; i++) {
+        if (userTests[i].id == testId) {
+            found = true;
+            testInUserProfile = userTests[i];
+            break;
+        }
+    }
+    return  (testInUserProfile.qCount !== testInUserProfile.answered);
+  },
   isPageDisabled: function(){
     return '';
   },

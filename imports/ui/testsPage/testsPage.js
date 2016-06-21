@@ -7,8 +7,22 @@ Template.testsPage.onCreated(function(){
 
 Template.testsPage.helpers({
   returnStatus: function(testId){
-    var cUser = Meteor.user();
-    return Spacebars.SafeString('<span class="label label-warning">Не пройден</span>');
+    var found = false;
+    var userTests = Meteor.user().profile.tests;
+    var testInUserProfile = undefined;
+    for (var i = 0; i < userTests.length; i++) {
+        if (userTests[i].id == testId) {
+            found = true;
+            testInUserProfile = userTests[i];
+            break;
+        }
+    }
+    if (found) {
+      var percent = Math.round(testInUserProfile.answered /  testInUserProfile.qCount * 100, 2);
+      return Spacebars.SafeString('<span class="label label-warning">'+percent+'%</span>');
+    } else {
+      return Spacebars.SafeString('<span class="label label-danger">Не пройден</span>');
+    }
   },
   getTests: function(){
     return Tests.find({});
