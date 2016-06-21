@@ -9,6 +9,7 @@ Meteor.startup(() => {
   });
 
   Api.addCollection(Tests);
+  Api.addCollection(Meteor.users);
 
   if (Meteor.users.find().count() === 0) {
     var options = {

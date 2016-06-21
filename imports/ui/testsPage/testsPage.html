@@ -38,6 +38,9 @@
         <td>
           Name
         </td>
+        <td>
+          Статус
+        </td>
       </tr>
     </thead>
     <tbody>
@@ -47,7 +50,10 @@
             {{@index}}
           </td>
           <td>
-            <a href="/tests/{{test._id}}/1">{{test.name}}</a>
+            <a href="/tests/{{test._id}}/1" id="selectTestForReview" data-id="{{test._id}}">{{test.name}}</a>
+          </td>
+          <td>
+            {{returnStatus test._id}}
           </td>
         </tr>
       {{/each}}
