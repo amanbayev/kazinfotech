@@ -10,10 +10,14 @@
     <h2>{{getQuestion}}</h2>
     <div class="list-group">
       {{#each opt in answers}}
-        <button type="button" class="list-group-item" data-value="{{opt}}">{{opt}}</button>
+        <button type="button" class="list-group-item questionOptionBtn" data-value="{{opt}}">{{opt}}</button>
       {{/each}}
     </div>
-    <a class="btn btn-success">Ответить</a>
+    {{#if isAnswerDisabled}}
+      <h3><span class="label label-danger">Вы уже ответили на этот вопрос!</span></h3>
+    {{else}}
+      <a class="btn btn-success {{hasSelectedAnswer}}" id="answerQuestionBtn">Ответить</a>
+    {{/if}}
     <nav>
       <ul class="pagination">
         <li>
@@ -22,7 +26,7 @@
           </a>
         </li>
         {{#each question in getQuestions}}
-          <li class="{{isQuestionActive question.id}}">
+          <li class="{{isQuestionActive question.id}} {{isPageDisabled}}">
             <a href="/tests/{{getTestId}}/{{question.id}}">{{question.id}}</a>
           </li>
         {{/each}}
